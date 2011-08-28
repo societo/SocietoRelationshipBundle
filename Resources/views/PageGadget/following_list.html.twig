@@ -1,0 +1,39 @@
+{##
+ # SocietoRelationshipBundle
+ # Copyright (C) 2011 Kousuke Ebihara
+ #
+ # This program is under the EPL/GPL/LGPL triple license.
+ # Please see the Resources/meta/LICENSE file that was distributed with this file.
+ #}
+
+{% extends skin_template_path('normal_gadget.html.twig') %}
+
+{% block caption %}{{ gadget.caption }}{% endblock %}
+{% block content %}
+<div class="icon_list">
+{% for following in followings %}
+<ul>
+<li>
+<a href="{{ path('profile', {'member' : following.destination}) }}" title="{{ following.destination.username }}">
+<img src="{{ path('show_resized_member_image', {'member': following.destination, 'width': 50, 'height': 50}) }}" class="icon">
+</a>
+</li>
+{% if show_name %}
+<li class="name">
+<a href="{{ path('profile', {'member' : following.destination}) }}" title="{{ following.destination.username }}">
+{{ following.destination.username }}
+</a>
+</li>
+{% endif %}
+</ul>
+{% endfor %}
+</div>
+{% if route_to_more_page %}
+<p class="more"><a href="{{ current_based_path(route_to_more_page, attributes) }}">More</a></p>
+{% endif %}
+{% if has_pager %}
+<div class="pagerfanta">
+{{ pagerfanta(pagerfanta, 'default', current_route_info(attributes)) }}
+</div>
+{% endif %}
+{% endblock %}
