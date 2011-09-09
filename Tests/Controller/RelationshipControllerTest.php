@@ -8,7 +8,7 @@ namespace Societo\RelationshipBundle\Tests\Controller;
 
 use Societo\BaseBundle\Test\WebTestCase;
 
-class RelationshipController extends WebTestCase
+class RelationshipControllerTest extends WebTestCase
 {
     public function setUp()
     {
